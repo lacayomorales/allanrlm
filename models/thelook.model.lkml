@@ -257,6 +257,7 @@ explore: special_charaters {}
 explore: demo_db_temporary {}
 
 explore: ten_million_orders {
+  sql_always_where: 1=1 ;;
   join: orders {
     type: left_outer
     sql_on: ${ten_million_orders.order_id} = ${orders.id} ;;

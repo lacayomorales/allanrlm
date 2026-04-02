@@ -12,6 +12,7 @@ view: users {
     sql: ${TABLE}.age ;;
   }
   dimension: city {
+    suggest_persist_for: "0 seconds"
     type: string
     sql: ${TABLE}.city ;;
   }
@@ -42,6 +43,7 @@ view: users {
     sql: ${TABLE}.last_name ;;
   }
   dimension: state {
+    suggest_persist_for: "0 seconds"
     type: string
     sql: ${TABLE}.state ;;
     map_layer_name: us_states
