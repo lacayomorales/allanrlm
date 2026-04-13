@@ -24,23 +24,27 @@ view: orders {
   measure: count {
     type: count
     drill_fields: [detail*]
+    link: {
+      label: "Testing"
+      url: "/explore/thelook/orders?qid=KmcrVv2savdAxnrl3CTbf4&toggle=vis,vse"
+    }
   }
 
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	users.id,
-	users.first_name,
-	users.last_name,
-	billion_orders.count,
-	fakeorders.count,
-	hundred_million_orders.count,
-	hundred_million_orders_wide.count,
-	order_items.count,
-	order_items_vijaya.count,
-	ten_million_orders.count
-	]
+  id,
+  users.id,
+  users.first_name,
+  users.last_name,
+  billion_orders.count,
+  fakeorders.count,
+  hundred_million_orders.count,
+  hundred_million_orders_wide.count,
+  order_items.count,
+  order_items_vijaya.count,
+  ten_million_orders.count
+  ]
   }
 
 }

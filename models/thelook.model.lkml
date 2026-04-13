@@ -145,6 +145,7 @@ explore: map_layer {}
 explore: marketing_campaigns {}
 
 explore: orders {
+  persist_for: "1 minute"
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
