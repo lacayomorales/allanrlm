@@ -145,6 +145,7 @@ explore: map_layer {}
 explore: marketing_campaigns {}
 
 explore: orders {
+  always_filter: {filters: [users.my_filter: "25"]}
   persist_for: "1 minute"
   join: users {
     type: left_outer

@@ -52,6 +52,10 @@ view: users {
     type: zipcode
     sql: ${TABLE}.zip ;;
   }
+  filter: my_filter {
+    type: number
+    sql: {% condition my_filter %} ${age} {% endcondition %} ;;
+  }
   measure: count {
     type: count
     drill_fields: [detail*]
