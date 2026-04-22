@@ -12,6 +12,10 @@ view: order_items {
     # hidden: yes
     sql: ${TABLE}.inventory_item_id ;;
   }
+  dimension:  type {
+    type: string
+    sql: ${phones} ;;
+  }
   dimension: order_id {
     type: number
     # hidden: yes
