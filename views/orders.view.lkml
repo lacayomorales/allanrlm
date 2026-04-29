@@ -21,6 +21,10 @@ view: orders {
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
+  measure: percent_of_total {
+    type: percent_of_total
+    drill_fields: [detail*]
+  }
   measure: count {
     type: count
     drill_fields: [detail*]
