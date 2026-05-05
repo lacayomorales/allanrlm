@@ -83,9 +83,13 @@ explore: fatal_error_sql_runner_query {}
 explore: fatal_error_user_derived_base {}
 
 explore: flights {
-  always_filter: {
-    filters: [destination: "ABE"]
-  }
+  # always_filter: {
+  #   filters: [destination: "ABE"]
+  # }
+  #access_filter: {
+  #  field: destination
+  #  user_attribute: user_attribute_name
+  #}
 }
 
 explore: foo {}
