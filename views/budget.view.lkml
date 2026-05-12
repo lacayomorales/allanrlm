@@ -19,6 +19,7 @@ view: budget {
     type: number
     sql: ${TABLE}.year ;;
   }
+
   measure: count {
     type: count
     drill_fields: [id]
