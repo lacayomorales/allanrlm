@@ -9,9 +9,31 @@ view: orders {
   }
   dimension_group: created {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, date, week, month, quarter, year]
     sql: ${TABLE}.created_at ;;
   }
+
+  parameter: comparison_type {
+    type: unquoted
+    allowed_value: { label: "Previous Month" value: "month" }
+    allowed_value: { label: "Previous Year" value: "year" }
+  }
+
+  dimension: period_grouping {
+    type: string
+    sql:
+    CASE
+      WHEN ${created_date} >= DATE_TRUNC(CURRENT_DATE(), {% parameter comparison_type %}) THEN 'Current'
+      ELSE 'Prior'
+    END ;;
+  }
+
+  measure: total_sales {
+    type: sum
+    sql: ${TABLE}.count ;;
+  }
+
+
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
