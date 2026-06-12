@@ -23,7 +23,11 @@ view: orders {
     type: string
     sql:
     CASE
-      WHEN ${created_date} >= DATE_TRUNC(CURRENT_DATE(), {% parameter comparison_type %}) THEN 'Current'
+      -- If the date is greater than or equal to the start of the current period
+      WHEN ${created_date} >= DATE_SUB(NOW(), INTERVAL 1 {% parameter comparison_type %})
+      THEN 'Current'
+
+      -- If the date is older, it falls into the prior period
       ELSE 'Prior'
     END ;;
   }
