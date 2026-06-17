@@ -9,7 +9,7 @@ view: orders {
   }
   dimension_group: created {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, date, week, month, quarter, year]
     sql: ${TABLE}.created_at ;;
   }
   dimension: status {
@@ -34,6 +34,72 @@ view: orders {
     }
   }
 
+  parameter: forecast_version_one {
+    hidden: no
+    # label: "FC Version Picker 1"
+    # view_label: "Metrics - Full Year"
+    type: string
+
+    allowed_value: {
+      label: "1 + 11"
+      value: "1p11"
+    }
+    allowed_value: {
+      label: "2 + 10"
+      value: "2p10"
+    }
+    allowed_value: {
+      label: "3 + 9"
+      value: "3p9"
+    }
+    allowed_value: {
+      label: "4 + 8"
+      value: "4p8"
+    }
+    allowed_value: {
+      label: "5 + 7"
+      value: "5p7"
+    }
+    allowed_value: {
+      label: "6 + 6"
+      value: "6p6"
+    }
+    #test
+    allowed_value: {
+      label: "7 + 5"
+      value: "7p5"
+    }
+    allowed_value: {
+      label: "8 + 4"
+      value: "8p4"
+    }
+    allowed_value: {
+      label: "9 + 3"
+      value: "9p3"
+    }
+    allowed_value: {
+      label: "10 + 2"
+      value: "10p2"
+    }
+    allowed_value: {
+      label: "11 + 1"
+      value: "11p1"
+    }
+    allowed_value: {
+      label: "BUDGET"
+      value: "BUDGET"
+    }
+  }
+  dimension: forecast_version_one_filter {
+    type: string
+    sql: {% if forecast_version_one._parameter_value == '1p11' %}
+      ${created_date}
+    {% elsif forecast_version_one._parameter_value == '2p10' %}
+      ${created_month}
+    {% else %}
+      ${created_date}
+    {% endif %};;
+  }
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
