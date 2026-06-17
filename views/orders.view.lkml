@@ -12,6 +12,32 @@ view: orders {
     timeframes: [raw, date, week, month, quarter, year]
     sql: ${TABLE}.created_at ;;
   }
+
+  parameter: comparison_type {
+    type: unquoted
+    allowed_value: { label: "Previous Month" value: "month" }
+    allowed_value: { label: "Previous Year" value: "year" }
+  }
+
+  dimension: period_grouping {
+    type: string
+    sql:
+    CASE
+      -- If the date is greater than or equal to the start of the current period
+      WHEN ${created_date} >= DATE_SUB(NOW(), INTERVAL 1 {% parameter comparison_type %})
+      THEN 'Current'
+
+      -- If the date is older, it falls into the prior period
+      ELSE 'Prior'
+    END ;;
+  }
+
+  measure: total_sales {
+    type: sum
+    sql: ${TABLE}.count ;;
+  }
+
+
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
