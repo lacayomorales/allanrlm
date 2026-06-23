@@ -52,6 +52,7 @@ view: orders {
     sql: ${count};;
   }
   measure: count {
+    label: "{{ forecast_version_one._parameter_value | remove: \"'\" | replace: 'p', '+' }} FC 000"
     type: count
     drill_fields: [detail*]
     link: {
