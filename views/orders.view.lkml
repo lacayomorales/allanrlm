@@ -64,6 +64,7 @@ view: orders {
   parameter: forecast_version_one {
     hidden: no
     # label: "FC Version Picker 1"
+    default_value: "Select FC - Picker 1"
     # view_label: "Metrics - Full Year"
     type: string
 
