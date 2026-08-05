@@ -16,6 +16,17 @@ view: users {
     type: string
     sql: ${TABLE}.city ;;
   }
+
+  dimension: StartsWithC {
+    type: yesno
+    sql: SUBSTRING(${state}, 1, 1)="C" ;;
+  }
+
+  dimension: EndsWithAorO {
+    type: yesno
+    sql: SUBSTRING(${state}, -1, 1)="a" OR SUBSTRING(${state}, -1, 1)="o" ;;
+  }
+
   dimension: country {
     type: string
     map_layer_name: countries
